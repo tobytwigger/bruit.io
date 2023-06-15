@@ -40,6 +40,18 @@ export namespace Components {
         "value": string;
     }
 }
+export interface BruitCoreCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLBruitCoreElement;
+}
+export interface BruitIoCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLBruitIoElement;
+}
+export interface BruitRatingCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLBruitRatingElement;
+}
 declare global {
     interface HTMLBruitCoreElement extends Components.BruitCore, HTMLStencilElement {
     }
@@ -78,7 +90,7 @@ declare namespace LocalJSX {
         /**
           * emit bruit-error on internal error or config error ex : BruitIo.addEventListener('onError',error=>...)
          */
-        "onBrtError"?: (event: CustomEvent<any>) => void;
+        "onBrtError"?: (event: BruitCoreCustomEvent<any>) => void;
     }
     interface BruitIo {
         "config"?: BrtConfig | string;
@@ -93,14 +105,14 @@ declare namespace LocalJSX {
         /**
           * emit bruit-error on internal error or config error ex : BruitIo.addEventListener('onError',error=>...)
          */
-        "onBrtError"?: (event: CustomEvent<any>) => void;
-        "onReady"?: (event: CustomEvent<any>) => void;
+        "onBrtError"?: (event: BruitIoCustomEvent<any>) => void;
+        "onReady"?: (event: BruitIoCustomEvent<any>) => void;
     }
     interface BruitRating {
         "color"?: string;
         "max"?: number;
         "offColor"?: string;
-        "onValueChange"?: (event: CustomEvent<any>) => void;
+        "onValueChange"?: (event: BruitRatingCustomEvent<any>) => void;
         "value"?: number;
     }
     interface BruitSelect {
